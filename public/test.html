@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet"  type="text/css"  href="climemain.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+</head>
+<body>
+
+<h1>Welcome to Clime!</h1>
+<h2>To get the weather in your area I need your zip code:</h2>
+
+<form id="zip_form" method=POST>
+    Your Zip Code<input id="zip" type="text" name="zip" /><br>
+    <input id="submit_button" type="submit" value="Submit">
+</form>
+
+
+<p id="weather_data">My first paragraph.</p>
+<script type="text/javascript">
+    $('#submit_button').click(function( event ) {
+        var temperature;
+        var weather;
+        var collection;
+        $.post( '/weather_zip', $('#zip_form').serialize(), function(data) {
+            //data = JSON.parse(data);
+            temperature=data.temp_F;
+            console.log(data.weatherDesc);
+            weather=data.weatherDesc[0].value;
+            if (weather == "sunny") {
+                if (temperature >=80) {
+                    //fetch outfits
+                } else if (temperature <80 && temperature >=70) {
+                    //fetch Casual + Date
+                } else if (temperature <70 && temperature >=50) {
+                    //fetch outfits
+                } else if (temperature <50 && temperature >=35) {
+                    //fetch Cozy
+                } else if (temperature <35) {
+                    //fetch outfits
+                }
+            }
+            if (weather == "cloudy") {
+                if (temperature >=80) {
+                    //fetch outfits
+                } else if (temperature <80 && temperature >=70) {
+                    //fetch Casual + Date
+                } else if (temperature <70 && temperature >=50) {
+                    //fetch outfits
+                } else if (temperature <50 && temperature >=35) {
+                    //fetch Cozy
+                } else if (temperature <35) {
+                    //fetch outfits
+                }
+            }
+            if (weather == "rainy") {
+                if (temperature >=80) {
+                    //fetch outfits
+                } else if (temperature <80 && temperature >=70) {
+                    //fetch Casual + Date
+                } else if (temperature <70 && temperature >=50) {
+                    //fetch outfits
+                } else if (temperature <50 && temperature >=35) {
+                    //fetch Cozy
+                } else if (temperature <35) {
+                    //fetch outfits
+                } 
+            }
+         //   alert("temp "+temperature+"weather data "+weather);
+         $.get( "/test_glance", function( data ) {
+             //console.log(data.response[0].styles);
+             first_style=data.response[0].styles[0];
+             console.log(first_style.tall_image);
+            });
+        
+        'json' // I expect a JSON response
+        });
+    event.preventDefault();
+    });
+ </script>
